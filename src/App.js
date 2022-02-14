@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
-function App() {
+function HelloUser() {
+  const [user, setUser] = useState('');
+  const [welcome, setWelcome] = useState('');
+
+  useEffect(() => {
+    if (welcome) {
+      alert('thank you for visiting me🥸')
+    }
+  }, [welcome]);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className='mensaje'>Hello User App</h1>
+      <form className='forms'>
+        <input type="text" placeholder='Enter your name' value={user} onChange={(e) => setUser(e.target.value)} />
+        <button type='button' onClick={() => setWelcome(`¡Welcome ${user}!🤗`)} >¡Greet me!</button>
+      </form>
+      <p>{welcome ? welcome :'Please enter your name🙏'}</p>
     </div>
   );
 }
 
-export default App;
+export default HelloUser;
